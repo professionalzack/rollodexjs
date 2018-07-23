@@ -16,7 +16,7 @@ So what you have to do is populate your world with NPCs and Factions, and combin
 Please note that currently, all names are case sensitive. Also, for now NPC names must be two words, and faction names must be one word. 
 #### NPC:
 - `!npc list` - List of all NPCs
-- `!npc get` *npc name* - pulls up info on requested npc
+- `!npc get` `*npc name*` - pulls up info on requested npc
 - `!npc new`*npc name* *npc description* - creates a new npc
 - `!npc describe` *npc name* *new npc description* - replaces the old description with the new description
 - `!npc rename` *npc old name* *npc new name* - renames npc
