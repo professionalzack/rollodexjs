@@ -10,6 +10,7 @@ const { token } = process.env.token || require('./config.json');
 var db = 'mongodb://localhost/rollodexjs'
 
 mongoose.connect(db);
+console.log("token =" + token);
 
 for (const file of commandFiles) {
     const command = require(`./controllers/${file}`);
