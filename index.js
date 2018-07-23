@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./controllers').filter(file => file.endsWith('.js'));
-const { prefix, token } = require('./config.json');
+const { prefix } = process.env.prefix || require('./config.json');
+const { token } = process.env.token || require('./config.json');
 
 var db = 'mongodb://localhost/rollodexjs'
 
