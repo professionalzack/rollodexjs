@@ -67,11 +67,37 @@ exports.CreateNPC = function(name, description, callback) {
 exports.describeNPC = function(nom, update, callback) {
     console.log("looking for " + nom);
     NPC.find({ name: nom }, (err, npcs) => {
-        console.log(npcs[0]._id);
-        NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
-                $set: { description: update }
-            },
-            callback);
+        console.log(npcs);
+        if (npcs[0]) {
+            console.log('got it!');
+            NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
+                    $set: { description: update }
+                },
+                callback);
+        } else {
+            console.log("this is an absolute error !");
+            callback(err)
+        }
+    });
+
+
+};
+
+exports.renameNPC = function(nom, update, callback) {
+    console.log("looking for " + nom);
+    NPC.find({ name: nom }, (err, npcs) => {
+        console.log(npcs);
+        if (npcs[0]._id == undefined) {
+            console.log('this isnt good its an error');
+            return err
+        } else {
+            console.log(npcs[0]._id);
+            console.log(`new name should be ${update}`);
+            NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
+                    $set: { name: update }
+                },
+                callback);
+        }
     });
 
 
@@ -209,6 +235,17 @@ exports.describeFaction = function(nom, update, callback) {
                     about to describe it as $ { update } `)
         Faction.findOneAndUpdate({ _id: fax[0]._id }, {
                 $set: { description: update }
+            },
+            callback);
+    });
+};
+
+exports.renameFaction = function(nom, update, callback) {
+    console.log("looking for " + nom);
+    Faction.find({ name: nom }, (err, fax) => {
+        console.log(`id is ${ fax[0]._id } `);
+        Faction.findOneAndUpdate({ _id: fax[0]._id }, {
+                $set: { name: update }
             },
             callback);
     });

@@ -41,8 +41,24 @@ module.exports = {
             case 'describe':
                 var name = args.splice(0, 2).join(" ");
                 var desc = args.join(" ");
-                controller.describeNPC(name, desc, (err, npc) =>
-                    message.channel.send(`maybe ${npc.name} got an update`));
+                controller.describeNPC(name, desc, (err, npc) => {
+                    if (err) {
+                        console.log("if else!");
+                        message.channel.send("it's not polite to talk about somebody when they don't exist");
+                    } else {
+                        if (npc) {
+                            message.channel.send(`we're learning more about ${npc.name}`)
+                        } else {
+                            message.channel.send(`who the heck is ${name}??`)
+                        }
+                    }
+                });
+                break;
+            case 'rename':
+                var name = args.splice(0, 2).join(" ");
+                var newname = args.join(" ");
+                controller.renameNPC(name, newname, (err, npc) =>
+                    message.channel.send(`${name} now goes by ${newname}. respect it!`));
                 break;
             case 'info':
                 controller.LookupNPC(args.join(' '), (err, nonpc) =>

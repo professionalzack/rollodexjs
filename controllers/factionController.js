@@ -35,6 +35,12 @@ module.exports = {
                 controller.describeFaction(name, desc, (err, fax) =>
                     message.channel.send(`${fax.name} got an update`));
                 break;
+            case 'rename':
+                var name = args.shift();
+                var desc = args.shift();
+                controller.renameFaction(name, desc, (err, fax) =>
+                    message.channel.send(`${name} is now called ${desc}`));
+                break;
             case 'kill':
                 await controller.DeleteFaction(args, (err, fax) =>
                     message.channel.send(`the ${args} gang has been wiped out `));
