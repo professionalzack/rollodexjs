@@ -8,7 +8,7 @@ const { prefix } = process.env.prefix || require('./config.json');
 const { token } = process.env.BOT_TOKEN || require('./config.json');
 
 var db = 'mongodb://localhost/rollodexjs'
-console.log(typeof(token);
+console.log(typeof(token));
 console.log(JSON.stringify(token));
 
 mongoose.connect(db);
