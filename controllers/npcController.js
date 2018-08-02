@@ -79,6 +79,7 @@ module.exports = {
                 controller.factNPC(nom, fax, (err, npc) =>
                     message.channel.send(` jumping ${nom} into the ${fax} gang`));
                 break;
+
             default:
 
                 message.channel.send(`Command ${crudCommand} not recognized`);
