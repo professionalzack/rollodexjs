@@ -10,7 +10,6 @@ const { token } = process.env.token || require('./config.json');
 var db = 'mongodb://localhost/rollodexjs'
 
 mongoose.connect(db);
-console.log("token =" + token);
 
 for (const file of commandFiles) {
     const command = require(`./controllers/${file}`);
@@ -26,9 +25,7 @@ client.on('message', message => {
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    if (command === (`ping`)) {
-        client.commands.get('ping').execute(message, args);
-    } else if (command === (`npc`)) {
+    if (command === (`npc`)) {
         client.commands.get('npcs').execute(message, args);
     } else if (command === (`faction`)) {
         client.commands.get('factions').execute(message, args);
@@ -50,6 +47,7 @@ client.on('message', message => {
         } else if (amount <= 1 || amount > 100) {
             return message.reply('you need to input a number between 1 and 99.');
         }
+
 
         message.channel.bulkDelete(amount, true).catch(err => {
             console.error(err);

@@ -16,6 +16,7 @@ module.exports = {
                 break;
             case 'list':
                 controller.ListAllNPCs((err, npcs) => {
+                    console.log("listing the dudes! ");
                     let npcInfo = npcs.map((npc) => `${npc.name}`);
                     message.channel.send(npcInfo.sort(function(a, b) {
                         a = a.toLowerCase();
