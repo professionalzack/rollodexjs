@@ -7,7 +7,7 @@ const commandFiles = fs.readdirSync('./controllers').filter(file => file.endsWit
 const { prefix } = process.env.prefix || require('./config.json');
 const token  = process.env.BOT_TOKEN;
 
-var db = 'mongodb://localhost/rollodexjs'
+var db = MONGODB_URI;
 console.log(typeof(token));
 console.log(JSON.stringify(token));
 console.log(process.env.BOT_TOKEN);
