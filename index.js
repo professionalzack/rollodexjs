@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./controllers').filter(file => file.endsWith('.js'));
-const { prefix } = process.env.prefix || require('./config.json');
+const prefix = process.env.prefix;
 const token  = process.env.BOT_TOKEN;
 
 var db = process.env.MONGODB_URI;
