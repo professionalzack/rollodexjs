@@ -78,8 +78,8 @@ client.on('message', message => {
             var spell = roll(1, 20, 0);
             message.channel.send(spell)
         }
-
-            var form = args[0].split('d');
+            var argument = args[0];
+            var form = argument.split('d');
             var num = form[0];
             var shape = form[1].split('+');
             var magic = roll(num, shape[0], shape[1]);
@@ -87,7 +87,7 @@ client.on('message', message => {
         
 
     } else if (command === 'roll-help') {
-        message.channel.send("to roll a d20, simply type `!roll`. for more complicated dice rolls, add [standard dice notation](https://en.wikipedia.org/wiki/Dice_notation). here are some examples:\n`2d8` `d12+3` `3d4+3`\ni have not added _advantage_ and have no plans to at the moment.")
+        message.channel.send("to roll a d20, simply type `!roll`. for more complicated dice rolls, add standard dice notation. here are some examples:\n`2d8` `d12+3` `3d4+3`\ni have not added _advantage_ and have no plans to at the moment. i also didnt add any restraints so please dont roll a million d999s thanks")
     }
 
 });
