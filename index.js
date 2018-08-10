@@ -33,7 +33,7 @@ client.on('message', message => {
     } else if (command === (`faction`)) {
         client.commands.get('factions').execute(message, args);
     } else if (command === (`more-help`)) {
-        message.channel.send("_please note that currently, all names are case sensitive. also, for now NPC names must be two words, and faction names must be one word._\n**NPCs:**\n`!npc list` - *List of all NPCs*\n`!npc get <npc name>` - *pulls up info on requested npc*\n`!npc new <npc name> <npc description>` -* creates a new npc*\n`!npc describe <npc name> <new npc description>` - *replaces the old description\n`!npc rename <npc old name> <npc new name>` - *renames npc*\n`!npc recruit <npc name> <faction name>` - *adds npc to an existing faction*\n`!npc kill <npc name>` - *removes npc from database*\n**Factions:**\n `!faction list` - *List of all NPCs*\n`!faction get <faction name>` - *pulls up info on requested faction*\n`!faction new <new faction name< <new faction description>` - *creates a new faction*\n`!faction describe <faction name> <new faction description>` - *replaces the old description*\n`!faction rename <faction old name> <faction new name>` - *renames faction*\n`!faction recruit <faction name> <npc name>` - *adds npc to an existing faction*\n`!faction members <faction name>` - *pulls up a list of members of said faction*\n`!faction kill <faction name>` - *removes faction from database*");
+        message.channel.send("_please note that currently, all names are case sensitive. also, for now NPC names must be two words, and faction names must be one word._\n**NPCs:**\n`!npc list` - *List of all NPCs*\n`!npc get <npc name>` - *pulls up info on requested npc*\n`!npc new <npc name> <npc description>` - *creates a new npc*\n`!npc describe <npc name> <new npc description>` - *replaces the old description*\n`!npc rename <npc old name> <npc new name>` - *renames npc*\n`!npc recruit <npc name> <faction name>` - *adds npc to an existing faction*\n`!npc kill <npc name>` - *removes npc from database*\n**Factions:**\n `!faction list` - *List of all NPCs*\n`!faction get <faction name>` - *pulls up info on requested faction*\n`!faction new <new faction name< <new faction description>` - *creates a new faction*\n`!faction describe <faction name> <new faction description>` - *replaces the old description*\n`!faction rename <faction old name> <faction new name>` - *renames faction*\n`!faction recruit <faction name> <npc name>` - *adds npc to an existing faction*\n`!faction members <faction name>` - *pulls up a list of members of said faction*\n`!faction kill <faction name>` - *removes faction from database*");
     } else if (command === (`help`)) {
                         message.channel.send("_please note that currently, all names are case sensitive. also, for now NPC names must be two words, and faction names must be one word. editing commands are available at `!more-help`. thanks!_\n**NPCs:**\n`!npc list` - *List of all NPCs*\n`!npc get <npc name>` - *pulls up info on requested npc*\n**Factions:**\n `!faction list` - *List of all NPCs*\n`!faction get <faction name>` - *pulls up info on requested faction*");
     } else if (command === 'args-info') {
@@ -60,6 +60,33 @@ client.on('message', message => {
             console.error(err);
             message.channel.send('there was an error trying to prune messages in this channel!');
         });
+    } else if (command === 'roll') {
+        var roll = function(amt, size, bonus){
+            var face = function(sides){
+              var answer = Math.floor(Math.random() * sides) + 1;
+              return answer
+            };
+            var i;
+            var result = parseInt(bonus)|0;
+            var rolls = amt | 1;
+            for (i = 0; i < rolls; i++){
+              result = result + face(size);
+            };
+            return result
+        };
+        if (!args.length){
+            var spell = roll(1, 20, 0);
+            message.channel.send(spell)
+        }else{
+        var form = args.split('d');
+        var num = form[0];
+        var shape = form[1].split('+');
+        var magic = roll(num, shape[0], shape[1]);
+        message.channel.send(magic);
+        };
+
+    } else if (command === 'roll-help') {
+        channel.message.send("to roll a d20, simply type `!roll`. for more complicated dice rolls, add [standard dice notation](https://en.wikipedia.org/wiki/Dice_notation). here are some examples:\n`2d8` `d12+3` `3d4+3`\ni have not added _advantage_ and have no plans to at the moment.")
     }
 
 });
