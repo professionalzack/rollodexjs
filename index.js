@@ -80,7 +80,7 @@ client.on('message', message => {
         }
             var argument = args[0];
             console.log(argument);
-            console.log(typeOf(argument));
+            console.log(typeof(argument));
             var form = argument.split('d');
             var num = form[0];
             var shape = form[1].split('+');
