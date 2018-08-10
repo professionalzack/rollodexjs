@@ -79,7 +79,7 @@ client.on('message', message => {
             message.channel.send(spell)
         }
 
-            var form = args.split('d');
+            var form = args[0].split('d');
             var num = form[0];
             var shape = form[1].split('+');
             var magic = roll(num, shape[0], shape[1]);
