@@ -32,12 +32,6 @@ client.on('message', message => {
         client.commands.get('npcs').execute(message, args);
     } else if (command === (`faction`)) {
         client.commands.get('factions').execute(message, args);
-    } else if (command === (`help`)) {
-        message.channel.send("_please note that currently, all names are case sensitive. commands for editing the database can be found at `!more help`. thanks!_ \n **NPCs:** \n
-          `!npc list` - *List of all NPCs* \n
-           `!npc get <npc name>` - *pulls up info on requested npc* \n
-           **Factions:** \n `!faction list` - *List of all NPCs* \n
-                  `!faction get <faction name>` - *pulls up info on requested faction* \n");
     } else if (command === (`more help`)) {
         message.channel.send("_please note that currently, all names are case sensitive. also, for now NPC names must be two words, and faction names must be one word._ \n
          **NPCs:** \n
@@ -56,6 +50,13 @@ client.on('message', message => {
                       `!faction recruit <faction name> <npc name>` - *adds npc to an existing faction* \n
                        `!faction members <faction name>` - *pulls up a list of members of said faction* \n
                         `!faction kill <faction name>` - *removes faction from database*");
+    } else if (command === (`help`)) {
+                        message.channel.send("_please note that currently, all names are case sensitive. also, for now NPC names must be two words, and faction names must be one word. editing commands are available at `!more help`. thanks!_ \n
+                         **NPCs:** \n
+                          `!npc list` - *List of all NPCs* \n
+                           `!npc get <npc name>` - *pulls up info on requested npc* \n
+                                 **Factions:** \n `!faction list` - *List of all NPCs* \n
+                                  `!faction get <faction name>` - *pulls up info on requested faction*");
     } else if (command === 'args-info') {
         if (!args.length) {
             return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
