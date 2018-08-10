@@ -87,7 +87,7 @@ client.on('message', message => {
         
 
     } else if (command === 'roll-help') {
-        channel.message.send("to roll a d20, simply type `!roll`. for more complicated dice rolls, add [standard dice notation](https://en.wikipedia.org/wiki/Dice_notation). here are some examples:\n`2d8` `d12+3` `3d4+3`\ni have not added _advantage_ and have no plans to at the moment.")
+        message.channel.send("to roll a d20, simply type `!roll`. for more complicated dice rolls, add [standard dice notation](https://en.wikipedia.org/wiki/Dice_notation). here are some examples:\n`2d8` `d12+3` `3d4+3`\ni have not added _advantage_ and have no plans to at the moment.")
     }
 
 });
