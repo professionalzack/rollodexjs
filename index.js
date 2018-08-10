@@ -77,7 +77,11 @@ client.on('message', message => {
         if (!args.length){
             var spell = roll(1, 20, 0);
             message.channel.send(spell)
-        }
+        } else {
+            console.log(args);
+            console.log(typeof(args));
+            console.log(args[0]);
+            console.log(typeof(args[0]));
             var argument = args[0];
             console.log(argument);
             console.log(typeof(argument));
@@ -86,6 +90,7 @@ client.on('message', message => {
             var shape = form[1].split('+');
             var magic = roll(num, shape[0], shape[1]);
             message.channel.send(magic);
+        }
         
 
     } else if (command === 'roll-help') {
