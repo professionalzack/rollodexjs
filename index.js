@@ -79,6 +79,8 @@ client.on('message', message => {
             message.channel.send(spell)
         }
             var argument = args[0];
+            console.log(argument);
+            console.log(typeOf(argument));
             var form = argument.split('d');
             var num = form[0];
             var shape = form[1].split('+');
