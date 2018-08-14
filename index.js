@@ -69,6 +69,7 @@ client.on('message', message => {
             var i;
             var result = parseInt(bonus) | 0;
             var rolls = amt | 1;
+            message.channel.send("amount: " + amt + ", rolls: " + rolls)
             for (i = 0; i < rolls; i++) {
                 let once = face(size)
                 let rollnumber = i + 1;
