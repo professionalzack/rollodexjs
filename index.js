@@ -72,7 +72,7 @@ client.on('message', message => {
             for (i = 0; i < rolls; i++) {
                 let once = face(size)
                 let rollnumber = i + 1;
-                message.channel.send("roll " + rollnumber + ": " + once);
+                message.channel.send("roll " + rollnumber + ": " + once + " ( " + i);
                 result = result + once;
             };
             return result
