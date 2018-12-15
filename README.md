@@ -2,10 +2,16 @@
 A simple non-player-character directory-builder bot for discord !
 
 ## How to use
-#### Invitation
-All you have to do is invite RolloDex to your discor server by [clicking here!](https://discordapp.com/oauth2/authorize?&client_id=461970423332995083&scope=bot&permissions=0) You need to have **Manage Server** permission on the server you select.
+#### *Some Assembly Required*
+I wrote this out so you could implement your own copy of Roll-o-Dex for your at-home table-top role-playing game. The code is all here but there are some other steps you will need to follow if you want this to work for you and your group. 
+I will write it all out more step-by-step at a later date, but basically you will need to download and set up these libraries/database/etc:
+* [mongoDB](https://docs.mongodb.com/manual/installation/)
+* [mongoose.js](https://mongoosejs.com/docs/)
+* [node.js](https://nodejs.org/en/)
+* [discord.js](https://discord.js.org/#/)
 
-If you have any questions, feedback, or want to request features, feel free to email me once I've added an email address on here or just open a [new issue on Github](https://github.com/professionalzack/rollodexjs/issues/new).
+You will also need to set up a Discord account and [create an application](https://discordapp.com/developers/applications/#top) so you can get a token, which you will put in your .gitignore file. 
+Lastly, you can run the whole thing through [Heroku](https://www.heroku.com/)
 
 ## Basic Idea
 Your player-characters will meet many, many non-player characters during the course of your ongoing table-top rpg campaign, and sometimes it can be difficult to keep them all straight. They often have strange names, and at some point it becomes difficult to remember who is allied whom, and where these NPCs are from.
@@ -36,13 +42,13 @@ Please note that currently, all names are case sensitive. Also, for now NPC name
 #### Other
 there are and/or will be a couple others !
 
-## Feature Requests
+## Issues
 
-Have a feature in mind? We'd love to hear about it. Feel free to [open an issue](https://github.com/professionalzack/rollodexjs/issues/new) and let us know.
+Have a feature in mind? Having trouble with something? Let me know. Feel free to [open an issue](https://github.com/professionalzack/rollodexjs/issues/new), and I will try to respond promptly.
 
 ## Contribute
 
-Want to contribute to Rollodex? Awesome! At some point soon this will be available.
+Want to contribute to Rollodex? Awesome! [Open a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
 
 ## [License](LICENSE)
