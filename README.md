@@ -22,22 +22,22 @@ So what you have to do is populate your world with NPCs and Factions, and combin
 Please note that currently, all names are case sensitive. Also, for now NPC names must be two words, and faction names must be one word. 
 #### NPC:
 - `!npc list` - List of all NPCs
-- `!npc get` `*npc name*` - pulls up info on requested npc
-- `!npc new`*npc name* *npc description* - creates a new npc
-- `!npc describe` *npc name* *new npc description* - replaces the old description with the new description
-- `!npc rename` *npc old name* *npc new name* - renames npc
-- `!npc recruit` *npc name* *faction name* - recruits existing npc into existing an faction
-- `!npc kill` *npc name* - removes npc from database
+- `!npc get` *npc_name* - pulls up info on requested npc
+- `!npc new`*npc_name* *npc_description* - creates a new npc
+- `!npc describe` *npc_name* *new_npc_description* - replaces the old description with the new description
+- `!npc rename` *npc_name* *npc_new_name* - renames npc
+- `!npc recruit` *npc_name* *faction_name* - recruits existing npc into existing an faction
+- `!npc kill` *npc_name* - removes npc from database
 
 #### Faction:
 - `!faction list` - List of all NPCs
-- `!faction get` *faction name* - pulls up info on requested faction
-- `!faction new`*faction name* *npc description* - creates a new faction
-- `!faction describe` *faction name* *new faction description* - replaces the old description with the new description
-- `!faction rename` *faction old name* *faction new name* - renames faction
-- `!faction recruit` *faction name* *npc name* - recruits existing npc into existing an faction
-- `!faction members` *faction name* - pulls up a list of members of said faction
-- `!faction kill` *faction name* - removes faction from database
+- `!faction get` *faction_name* - pulls up info on requested faction
+- `!faction new`*faction_name* *npc description* - creates a new faction
+- `!faction describe` *faction_name* *new_faction_description* - replaces the old description with the new description
+- `!faction rename` *faction_name* *new_faction_name* - renames faction
+- `!faction recruit` *faction_name* *npc_name* - recruits existing npc into existing an faction
+- `!faction members` *faction_name* - pulls up a list of members of said faction
+- `!faction kill` *faction_name* - removes faction from database
 
 #### Other
 there are and/or will be a couple others !
