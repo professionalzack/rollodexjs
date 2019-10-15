@@ -14,12 +14,12 @@ You will also need to set up a Discord account and [create an application](https
 Lastly, you can run the whole thing through [Heroku](https://www.heroku.com/)
 
 ## Basic Idea
-Your player-characters will meet many, many non-player characters during the course of your ongoing table-top rpg campaign, and sometimes it can be difficult to keep them all straight. They often have strange names, and at some point it becomes difficult to remember who is allied whom, and where these NPCs are from.
-Rollodex uses the term 'Faction' as a catch-all for various ways NPCs may be organized. Guilds, families, businesses, even countries can be factions.
-So what you have to do is populate your world with NPCs and Factions, and combine the two, all using the commands below. Then you can call up anyone you want and learn about them! NPCs may belong to any number of factions, but too many may get confusing to you!
+Your player-characters will meet many, many non-player characters during the course of your ongoing table-top rpg campaign and sometimes it can be difficult to keep them all straight. They often have strange names and at some point it becomes difficult to remember who is allied with whom and where these NPCs are from.
+Rollodex uses the term 'Faction' as a catch-all for various ways NPCs may be organized. Guilds, families, businesses and even countries can be factions.
+So what you have to do is populate your world with NPCs and Factions and combine the two, all using the commands below. Then you can call up anyone you want and learn about them! NPCs may belong to any number of factions, but too many may get confusing to you!
 
 ## Commands
-Please note that currently, all names are case sensitive. Also, for now NPC names must be two words, and faction names must be one word. 
+Please note that currently all names are case sensitive. Also, for now NPC names must be two words, and faction names must be one word. 
 #### NPC:
 - `!npc list` - List of all NPCs
 - `!npc get` `*npc name*` - pulls up info on requested npc
@@ -40,7 +40,7 @@ Please note that currently, all names are case sensitive. Also, for now NPC name
 - `!faction kill` *faction name* - removes faction from database
 
 #### Other
-there are and/or will be a couple others !
+There are and/or will be a couple of others!
 
 ## Issues
 
