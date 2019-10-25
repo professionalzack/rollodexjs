@@ -1,278 +1,262 @@
-require('../models/NPC');
-require('../models/Faction');
+require("../models/NPC");
+require("../models/Faction");
 
-var mongoose = require('mongoose'),
-    NPC = mongoose.model('NPC'),
-    Faction = mongoose.model('Faction');
-
-
-
-
-
+var mongoose = require("mongoose"),
+  NPC = mongoose.model("NPC"),
+  Faction = mongoose.model("Faction");
 
 exports.CreateFaction = function(nom, description, callback) {
-    console.log("world building with " + nom);
+  console.log("world building with " + nom);
 
+  var newFaction = new Faction({
+    _id: new mongoose.Types.ObjectId(),
+    name: nom,
+    description: description
+  });
 
-    var newFaction = new Faction({
-
-        _id: new mongoose.Types.ObjectId(),
-        name: nom,
-        description: description,
-
-    });
-
-    newFaction.save(callback);
+  newFaction.save(callback);
 };
 
 exports.TestNPCs = function(message) {
-    console.log("testing");
-    return message.join(' ');
+  console.log("testing");
+  return message.join(" ");
 };
 
 exports.ListAllNPCs = function(callback) {
-    console.log("new call works yo");
-    NPC.find({}, callback);
-
+  console.log("new call works yo");
+  NPC.find({}, callback);
 };
-
-
 
 exports.LookupNPC = function(nom, callback) {
-    console.log("looking up !!");
-    NPC.find({ name: nom }, callback);
-
-
+  console.log("looking up !!");
+  NPC.find({ name: nom }, callback);
 };
 
-
-
 exports.CreateNPC = function(name, description, callback) {
-    console.log("making a guy become at all yo");
+  console.log("making a guy become at all yo");
 
-    console.log("ready to make someone");
-    var newNPC = new NPC({
-        _id: new mongoose.Types.ObjectId(),
-        name: name,
-        description: description,
-        faction: []
-    });
-    console.log("ready to save and callback");
-    newNPC.save(callback);
-    console.log(newNPC + "saved?");
-
-
+  console.log("ready to make someone");
+  var newNPC = new NPC({
+    _id: new mongoose.Types.ObjectId(),
+    name: name,
+    description: description,
+    faction: []
+  });
+  console.log("ready to save and callback");
+  newNPC.save(callback);
+  console.log(newNPC + "saved?");
 };
 
 exports.describeNPC = function(nom, update, callback) {
-    console.log("looking for " + nom);
-    NPC.find({ name: nom }, (err, npcs) => {
-        console.log(npcs);
-        if (npcs[0]) {
-            console.log('got it!');
-            NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
-                    $set: { description: update }
-                },
-                callback);
-        } else {
-            console.log("this is an absolute error !");
-            callback(err)
-        }
-    });
-
-
+  console.log("looking for " + nom);
+  NPC.find({ name: nom }, (err, npcs) => {
+    console.log(npcs);
+    if (npcs[0]) {
+      console.log("got it!");
+      NPC.findOneAndUpdate(
+        { _id: npcs[0]._id },
+        {
+          $set: { description: update }
+        },
+        callback
+      );
+    } else {
+      console.log("this is an absolute error !");
+      callback(err);
+    }
+  });
 };
 
 exports.renameNPC = function(nom, update, callback) {
-    console.log("looking for " + nom);
-    NPC.find({ name: nom }, (err, npcs) => {
-        console.log(npcs);
-        if (npcs[0]._id == undefined) {
-            console.log('this isnt good its an error');
-            return err
-        } else {
-            console.log(npcs[0]._id);
-            console.log(`new name should be ${update}`);
-            NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
-                    $set: { name: update }
-                },
-                callback);
-        }
-    });
-
-
+  console.log("looking for " + nom);
+  NPC.find({ name: nom }, (err, npcs) => {
+    console.log(npcs);
+    if (npcs[0]._id == undefined) {
+      console.log("this isnt good its an error");
+      return err;
+    } else {
+      console.log(npcs[0]._id);
+      console.log(`new name should be ${update}`);
+      NPC.findOneAndUpdate(
+        { _id: npcs[0]._id },
+        {
+          $set: { name: update }
+        },
+        callback
+      );
+    }
+  });
 };
 
 exports.factNPC = function(nom, update, callback) {
-    console.log("looking for " + nom);
-    NPC.find({ name: nom }, (err, npcs) => {
-        console.log(npcs[0]._id);
-        console.log(`
-                    about to recruit ${ nom }
-                    to the ${ update }
+  console.log("looking for " + nom);
+  NPC.find({ name: nom }, (err, npcs) => {
+    console.log(npcs[0]._id);
+    console.log(`
+                    about to recruit ${nom}
+                    to the ${update}
                     gang `);
-        NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
-                $push: { faction: update }
-            },
-            callback);
-    });
-
-
+    NPC.findOneAndUpdate(
+      { _id: npcs[0]._id },
+      {
+        $push: { faction: update }
+      },
+      callback
+    );
+  });
 };
 
 exports.unfactNPC = function(nom, update, callback) {
-    console.log("looking for " + nom);
-    NPC.find({ name: nom }, (err, npcs) => {
-        console.log(npcs[0]._id);
-        console.log(`
-                    about to kick ${ nom }
-                    out of the ${ update }
+  console.log("looking for " + nom);
+  NPC.find({ name: nom }, (err, npcs) => {
+    console.log(npcs[0]._id);
+    console.log(`
+                    about to kick ${nom}
+                    out of the ${update}
                     gang `);
-        NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
-                $pull: { faction: update }
-            },
-            callback);
-    });
-
-
+    NPC.findOneAndUpdate(
+      { _id: npcs[0]._id },
+      {
+        $pull: { faction: update }
+      },
+      callback
+    );
+  });
 };
 
 exports.FindMembers = function(fax, callback) {
-    console.log(`
-                    looking for members of ${ fax } `);
-    NPC.find({ faction: { "$all": [fax] } }, callback)
+  console.log(`
+                    looking for members of ${fax} `);
+  NPC.find({ faction: { $all: [fax] } }, callback);
 };
 
-
-
 exports.HazeNPC = function(nom, fax, callback) {
-    if (Faction.findOne({ name: fax })) {
-        console.log("a faction has been found!");
-    } else {
-        message.channel.send(`
+  if (Faction.findOne({ name: fax })) {
+    console.log("a faction has been found!");
+  } else {
+    message.channel.send(`
                     There is no faction called $ { fax }, check the name and change if needed. `);
+  }
 
-
-
-    }
-
-    console.log("looking for " + nom);
-    NPC.find({ name: nom }, (err, npcs) => {
-        console.log(npcs[0]._id);
-        NPC.findOneAndUpdate({ _id: npcs[0]._id }, {
-                $set: { faction: fax }
-            },
-            callback);
-    });
-
-
+  console.log("looking for " + nom);
+  NPC.find({ name: nom }, (err, npcs) => {
+    console.log(npcs[0]._id);
+    NPC.findOneAndUpdate(
+      { _id: npcs[0]._id },
+      {
+        $set: { faction: fax }
+      },
+      callback
+    );
+  });
 };
 
 exports.idnpc = function(id) {
-    console.log("going for " + id);
-    var wol = NPC.find({ _id: id });
-    console.log(wol)
-    return wol
+  console.log("going for " + id);
+  var wol = NPC.find({ _id: id });
+  console.log(wol);
+  return wol;
 };
 
 exports.NameNPC = function(nom) {
-    console.log("going for " + nom);
-    var wol = NPC.find({ name: nom });
-    console.log(wol)
-    return wol
-};
-
-
-exports.UpdateNPC = function(id, update, callback) {
-    console.log("things are changing around here...")
-    NPC.findOneAndUpdate({ _id: id }, {
-            $set: { description: update }
-        },
-        callback);
+  console.log("going for " + nom);
+  var wol = NPC.find({ name: nom });
+  console.log(wol);
+  return wol;
 };
 
 exports.UpdateNPC = function(id, update, callback) {
-    console.log("things are changing around here...")
-    NPC.findOneAndUpdate({ _id: id }, {
-            $set: { description: update }
-        },
-        callback);
+  console.log("things are changing around here...");
+  NPC.findOneAndUpdate(
+    { _id: id },
+    {
+      $set: { description: update }
+    },
+    callback
+  );
 };
 
+exports.UpdateNPC = function(id, update, callback) {
+  console.log("things are changing around here...");
+  NPC.findOneAndUpdate(
+    { _id: id },
+    {
+      $set: { description: update }
+    },
+    callback
+  );
+};
 
 exports.DeleteNPC = function(nom, callback) {
-    console.log("death to the tyrant " + nom + "!!")
-    NPC.find({ name: nom }, (err, npc) => {
-        console.log(npc[0]._id);
-        NPC.findOneAndRemove({ _id: npc[0]._id }, callback);
-    });
-
-
+  console.log("death to the tyrant " + nom + "!!");
+  NPC.find({ name: nom }, (err, npc) => {
+    console.log(npc[0]._id);
+    NPC.findOneAndRemove({ _id: npc[0]._id }, callback);
+  });
 };
-
 
 exports.ListAllFactions = function(callback) {
-    console.log("exploring");
-    var cults = Faction.find({}, callback);
-    return cults
+  console.log("exploring");
+  var cults = Faction.find({}, callback);
+  return cults;
 };
 
-
 exports.LookupFaction = function(nom, callback) {
-    console.log("looking this group up !!");
-    Faction.find({ name: nom }, callback);
-
-
-
+  console.log("looking this group up !!");
+  Faction.find({ name: nom }, callback);
 };
 
 exports.describeFaction = function(nom, update, callback) {
-    console.log("looking for " + nom);
-    Faction.find({ name: nom }, (err, fax) => {
-        console.log(`
+  console.log("looking for " + nom);
+  Faction.find({ name: nom }, (err, fax) => {
+    console.log(`
                     id is $ { fax[0]._id } `);
-        console.log(`
-                    about to describe it as $ { update } `)
-        Faction.findOneAndUpdate({ _id: fax[0]._id }, {
-                $set: { description: update }
-            },
-            callback);
-    });
+    console.log(`
+                    about to describe it as $ { update } `);
+    Faction.findOneAndUpdate(
+      { _id: fax[0]._id },
+      {
+        $set: { description: update }
+      },
+      callback
+    );
+  });
 };
 
 exports.renameFaction = function(nom, update, callback) {
-    console.log("looking for " + nom);
-    Faction.find({ name: nom }, (err, fax) => {
-        console.log(`id is ${ fax[0]._id } `);
-        Faction.findOneAndUpdate({ _id: fax[0]._id }, {
-                $set: { name: update }
-            },
-            callback);
-    });
+  console.log("looking for " + nom);
+  Faction.find({ name: nom }, (err, fax) => {
+    console.log(`id is ${fax[0]._id} `);
+    Faction.findOneAndUpdate(
+      { _id: fax[0]._id },
+      {
+        $set: { name: update }
+      },
+      callback
+    );
+  });
 };
-
 
 exports.UpdateFaction = function(id, update, callback) {
-    console.log("things are changing around here...")
-    Faction.findOneAndUpdate({ _id: id }, {
-            $set: { description: update }
-        },
-        callback);
+  console.log("things are changing around here...");
+  Faction.findOneAndUpdate(
+    { _id: id },
+    {
+      $set: { description: update }
+    },
+    callback
+  );
 };
-
 
 exports.DeleteFaction = function(nom, callback) {
-    console.log(`
+  console.log(`
                     liquidating the assets of the $ { nom }
                     gang `);
-    Faction.find({ name: nom }, (err, fax) => {
-        console.log(fax[0]._id);
-        Faction.findOneAndRemove({ _id: fax[0]._id }, callback);
-    });
-
-
+  Faction.find({ name: nom }, (err, fax) => {
+    console.log(fax[0]._id);
+    Faction.findOneAndRemove({ _id: fax[0]._id }, callback);
+  });
 };
-
 
 /*
 if (faction == undefined) {

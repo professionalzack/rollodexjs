@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_USERNAME=$MONGO_USERNAME
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_HOSTNAME=$MONGO_HOSTNAME
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/home/node/rollodex
+    networks:
+      - rollodex
+  mongo:
+    image: mongo:4.0-xenial
+    container_name: mongo
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+      - MONGO_INITDB_DATABASE=$MONGO_DB
+    ports:
+      - "27017:$MONGO_PORT"
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - rollodex
+
+networks:
+  rollodex:
+    driver: bridge
+
+volumes:
+  dbdata:
