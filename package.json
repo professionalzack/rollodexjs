@@ -18,7 +18,7 @@
   "homepage": "https://github.com/professionalzack/rollodexjs#readme",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "mongodb": "^3.1.0",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.1.8",
     "nodemon": "^1.17.5"
   }
